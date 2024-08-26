@@ -1,0 +1,97 @@
+<div class="page-container">
+
+  <div class="page-header">
+    <h1>Modifying marker details for: {{this.modifyingMarker.title}}</h1>
+  </div>
+
+  <div class="user-info-container">
+
+
+
+      <!-- PFP -->
+      <div class="profile-picture">
+        <mat-label> {{ "Original image link was: " + this.data.marker.imageLink }}</mat-label>
+        <img class="profile-picture__image" src="{{ imageLink ?? 'https://f4.bcbits.com/img/a2204242843_65'}}" alt="profile picture">
+      </div>
+
+ <form [formGroup]="this.form">
+
+      <div class="user-info-form">
+
+        <!-- names -->
+        <div class="user-info-form__names">
+
+          <div class="user-info-form__names__first-name ">
+            <mat-form-field >
+              <mat-label [ngStyle]="{color: data.marker.title !== title ? 'orange' :''}"> Current Title: {{data.marker.title}} </mat-label>
+              <div>
+                <input matInput type="text" formControlName="title" placeholder="New title" >
+              </div>
+            </mat-form-field>
+          </div>
+
+          <div class="user-info-form__names__last-name ">
+            <mat-form-field >
+              <mat-label [ngStyle]="{color: data.marker.description !== description ? 'orange' :''}"> Current Description: {{data.marker.description ?? 'null'}} </mat-label>
+              <div>
+                <textarea
+                  matInput
+                  class="description__textarea"
+                  type="text"
+                  formControlName="description"
+                  placeholder="New description"
+                ></textarea>
+                <!-- <input matInput type="text" formControlName="description" placeholder="New description"> -->
+              </div>
+            </mat-form-field>
+          </div>
+
+          <div class="user-info-form__names__last-name ">
+            <mat-form-field >
+              <mat-label [ngStyle]="{color: data.marker.imageLink !== imageLink ? 'orange' :''}"> Current Image Link: {{data.marker.imageLink ?? 'null'}} </mat-label>
+              <div>
+                <input matInput type="text" formControlName="imageLink" placeholder="New imageLink">
+              </div>
+            </mat-form-field>
+          </div>
+
+          <div class="user-info-form__names__last-name ">
+            <mat-form-field >
+              <mat-label [ngStyle]="{color: data.marker.icon !== icon ? 'orange' :''}"> Current Mat-Icon: {{data.marker.icon ?? 'null'}} </mat-label>
+              <div>
+                <input matInput type="text" formControlName="icon" placeholder="New icon">
+              </div>
+            </mat-form-field>
+          </div>
+
+          <div class="user-info-form__names__last-name ">
+            <mat-form-field >
+              <mat-label [ngStyle]="{color: data.marker.iconColor !== iconColor ? 'orange' :''}"> Current Mat-Icon Color: {{data.marker.iconColor ?? 'null'}} </mat-label>
+              <div>
+                <input matInput type="text" formControlName="iconColor" placeholder="New icon color">
+              </div>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="user-info-form__buttons">
+          <button class="user-info-form__buttons__submit-button" mat-raised-button color="primary" type="submit" [disabled]="form.invalid" (click)="onSubmit()">Confirm Changes</button>
+          <ng-container>
+            <button class="user-info-form__buttons__delete-button" mat-raised-button color="warn" type="delete"  (click)="onDeleteMarkerClicked()">Delete Marker</button>
+          </ng-container>
+          <button class="user-info-form__buttons__close-button" mat-raised-button color="success" type="cancel"  (click)="onClose()">Cancel</button>
+        </div>
+
+      </div>
+    </form>
+
+
+  </div>
+
+
+  <!-- TODO: maybe show assigned projects? -->
+
+
+
+</div>

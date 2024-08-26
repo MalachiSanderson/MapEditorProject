@@ -1,8 +1,15 @@
 .marker-container {
   position: absolute;
-  // transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
   display: flex;
   flex-direction: column;
+}
+.marker-container:hover{
+ // transform: 0;
+  // overflow-block: clip;
+  z-index: +10;
+  // position: absolute;
+  // overflow: visible;
 }
 
 .marker-hovering-container {

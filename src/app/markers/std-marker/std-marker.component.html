@@ -1,27 +1,35 @@
-<div class="marker-container"  [ngStyle]="{ left: marker.position.x + 'px', top: marker.position.y + 'px' }"
-(mouseenter)="onMouseEnter()"
-(mouseleave)="onMouseLeave()"
->
-<!-- <button mat-button (click)="onClickMarker()">{{marker.title}}</button> -->
+<ng-container *ngIf="!marker.deleted">
+  <div class="marker-container"
+  [ngStyle]="{ left: marker.position.x + 'px', top: marker.position.y + 'px' }"
+  (click)="onClickMarker($event, marker)"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+  >
+  <!-- <button mat-button (click)="onClickMarker()">{{marker.title}}</button> -->
 
-  <ng-container *ngIf="marker.icon">
-    <div (click)="onClickMarker()">
-      <!-- <mat-label>{{marker.title}}</mat-label> -->
-      <mat-icon [ngStyle]="{'color': marker.iconColor ?? '' }">{{marker.icon}}</mat-icon>
-    </div>
-  </ng-container>
-  <ng-container *ngIf="!marker.icon">
-    <button mat-button (click)="onClickMarker()">{{marker.title}}</button>
-  </ng-container>
-
-  <div *ngIf="isHovering" class="marker-hovering-container">
-    <div class="marker-hovering-container__description">
-      <span *ngIf="marker.description" >{{marker.description}}</span>
-    </div>
-    <ng-container *ngIf="marker.imageLink">
-      <div class="marker-hovering-container__image-container">
-        <img [src]="marker.imageLink" class="marker-hovering-container__image-container__responsive-image">
+    <ng-container *ngIf="marker.icon?.length">
+      <div>
+        <mat-icon [ngStyle]="{'color': marker.iconColor ?? '' }">{{marker.icon}}</mat-icon>
       </div>
+      <!-- <div (click)="onClickMarker($event)" style="display: flex; flex-direction: column-reverse;">
+        <mat-label [ngStyle]="{'color': marker.iconColor ?? '' }">{{marker.title}}</mat-label>
+        <mat-icon [ngStyle]="{'color': marker.iconColor ?? '' }">{{marker.icon}}</mat-icon>
+      </div> -->
     </ng-container>
+    <ng-container *ngIf="!marker.icon?.length">
+      <button mat-button [ngStyle]="{'color': marker.iconColor ?? '' }">{{marker.title}}</button>
+    </ng-container>
+
+    <div *ngIf="isHovering" class="marker-hovering-container">
+      <div class="marker-hovering-container__description">
+        <span *ngIf="marker.description" >{{marker.description}}</span>
+      </div>
+      <ng-container *ngIf="marker.imageLink">
+        <div class="marker-hovering-container__image-container">
+          <img [src]="marker.imageLink" class="marker-hovering-container__image-container__responsive-image">
+        </div>
+      </ng-container>
+    </div>
   </div>
-</div>
+</ng-container>
+

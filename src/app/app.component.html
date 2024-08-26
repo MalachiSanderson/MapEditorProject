@@ -6,6 +6,9 @@
 <div class="image-container" (click)="addMarker($event)">
   <img [src]="imageLink" class="full-image {{isZoomed ? 'zoomed' : ''}}">
   <ng-container *ngFor="let marker of markers">
-    <app-std-marker [marker]="marker"></app-std-marker>
+    <app-std-marker [marker]="marker"
+    (markerUpdate)="onCatchMarkerUpdate($event.oldMarker, $event.updatedMarker)"
+    (deletedMarker)="onCatchDeleteMarker(marker)"
+    ></app-std-marker>
   </ng-container>
 </div>
